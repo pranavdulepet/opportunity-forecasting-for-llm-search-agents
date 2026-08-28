@@ -1,0 +1,3 @@
+held_out_state,mean_reward,qrel_positive_hits,qrel_positive_total,qrel_positive_rate,top_grade_hits,top_grade_total,top_grade_rate
+First schedulable decision point,0.287,83,360,0.231,81,360,0.225
+Full fixed trajectory,0.403,124,360,0.344,124,360,0.344

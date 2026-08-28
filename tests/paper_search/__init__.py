@@ -1,0 +1,1 @@
+"""Paper-search smoke tests."""

@@ -1,0 +1,5 @@
+protocol,domain,Base Prompt,Raw ZOIB,Scalar,Gaussian
+Stopping,WebShop,0.5369,0.5419,0.5373,0.5454
+Stopping,Paper Search,0.3640,0.3765,0.3697,0.3795
+Raw allocation,WebShop,0.5325,0.5541,0.5537,0.5564
+Raw allocation,Paper Search,0.3652,0.3888,0.3827,0.3906

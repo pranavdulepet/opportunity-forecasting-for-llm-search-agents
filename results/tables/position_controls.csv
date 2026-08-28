@@ -1,0 +1,6 @@
+method,webshop_global_spearman,webshop_within_step_spearman,webshop_stopping_auc,paper_search_global_spearman,paper_search_within_step_spearman,paper_search_stopping_auc
+Base Prompt,0.105,-0.007,0.5369,0.091,-0.063,0.3640
+Raw ZOIB,0.854,0.747,0.5419,0.689,0.458,0.3765
+Step-only,0.560,0.279,0.5312,0.466,0.134,0.3297
+Feature-only,0.803,0.655,0.5385,0.590,0.330,0.3573
+Reservation,0.795,0.661,0.5414,0.580,0.291,0.3746

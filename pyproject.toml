@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opportunity-forecasting"
+version = "0.1.0"
+description = "Code and experiment artifacts for Opportunity Forecasting for LLM Search Agents"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = {file = "LICENSE"}
+
+[project.scripts]
+opportunity-forecast = "opportunity_forecasting.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["opportunity_forecasting*"]

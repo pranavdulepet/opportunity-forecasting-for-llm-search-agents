@@ -1,0 +1,8 @@
+name: opportunity-forecasting-analysis
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.14
+  - pip=26.2
+  - pip:
+      - -r ../requirements/analysis-lock.txt

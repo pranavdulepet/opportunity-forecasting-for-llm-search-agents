@@ -1,0 +1,11 @@
+{
+  "seed": 123,
+  "num_goals": 3647,
+  "num_train": 2918,
+  "num_dev": 365,
+  "num_test": 364,
+  "algorithm": "shuffle query row indices with random.Random(seed), then round 80/10/10 counts and sort each split",
+  "paper_query_path": "data/paper_search/export/queries.jsonl",
+  "paper_corpus_path": "data/paper_search/export/corpus.jsonl",
+  "paper_qrels_path": "data/paper_search/export/qrels.tsv"
+}

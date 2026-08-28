@@ -1,0 +1,51 @@
+{
+  "dataset_name": "princeton-nlp/LitSearch",
+  "query_config": "query",
+  "corpus_config": "corpus_clean",
+  "split": "full",
+  "include_litsearch": 1,
+  "beir_datasets": [
+    "scifact",
+    "scidocs",
+    "nfcorpus",
+    "trec-covid"
+  ],
+  "num_queries": 3647,
+  "num_corpus_papers": 269988,
+  "num_qrels": 81722,
+  "query_path": "data/paper_search/export/queries.jsonl",
+  "corpus_path": "data/paper_search/export/corpus.jsonl",
+  "qrels_path": "data/paper_search/export/qrels.tsv",
+  "sources": [
+    {
+      "source_dataset": "LitSearch",
+      "num_queries": 597,
+      "num_corpus_papers": 64183,
+      "num_qrels": 639
+    },
+    {
+      "source_dataset": "BEIR/scifact",
+      "num_queries": 1000,
+      "num_corpus_papers": 5183,
+      "num_qrels": 1132
+    },
+    {
+      "source_dataset": "BEIR/scidocs",
+      "num_queries": 1000,
+      "num_corpus_papers": 25657,
+      "num_qrels": 4928
+    },
+    {
+      "source_dataset": "BEIR/nfcorpus",
+      "num_queries": 1000,
+      "num_corpus_papers": 3633,
+      "num_qrels": 50350
+    },
+    {
+      "source_dataset": "BEIR/trec-covid",
+      "num_queries": 50,
+      "num_corpus_papers": 171332,
+      "num_qrels": 24673
+    }
+  ]
+}

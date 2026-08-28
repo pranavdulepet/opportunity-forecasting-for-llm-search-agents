@@ -1,0 +1,7 @@
+component,setting
+Search model,Qwen/Qwen2.5-7B-Instruct; source trajectories use temperature 0 and top-p=1; sampled continuations use temperature 0.7 and top-p=0.9; episode horizon 60
+Data,"Goal-disjoint split seed 123; six sampled continuations per labeled decision point; reward support [0,1]"
+Training,"Three epochs; seed 42; LoRA rank 16, alpha 32, dropout 0.05; learning rate 1e-4 except Paper Search Gaussian at 1e-5; scalar selected by dev MAE and ZOIB/Gaussian by dev objective"
+Evaluation,Identical aligned held-out reward streams for every method; one shared stopping cost/risk sweep; normalized AUC over each domain's common observed support
+Prompt parsing,Forecast metrics use valid parses with coverage reported separately; invalid allocation forecasts get zero priority; invalid stopping forecasts trigger fail-safe continue
+Software,Python 3.11.14; PyTorch 2.5.1; Transformers 4.48.3; vLLM 0.7.3; NumPy 1.26.4; SciPy 1.16.3; scikit-learn 1.7.2; Matplotlib 3.10.7; WebShop generation used vLLM 0.8.5.post1

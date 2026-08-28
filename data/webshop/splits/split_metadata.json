@@ -1,0 +1,21 @@
+{
+  "algorithm": "shuffle sorted goal IDs, then greedily assign whole goals until each checkpoint target is reached",
+  "checkpoint_targets": {
+    "train": 20000,
+    "dev": 2000,
+    "test": 2000
+  },
+  "seed": 123,
+  "num_goals_total": 12087,
+  "split_goals": {
+    "train": 3449,
+    "dev": 335,
+    "test": 371,
+    "holdout": 7932
+  },
+  "source_checkpoint_stream": {
+    "sha256": "4f22d60ff68eec1e08e8f1fa247da94a558c5f6e5c9f5a48c831d8565937c60a",
+    "bytes": 2609306225,
+    "rows": 69981
+  }
+}

@@ -1,0 +1,5 @@
+method,webshop_stopping_auc,paper_search_stopping_auc,webshop_cost_normalized_allocation_auc,paper_search_cost_normalized_allocation_auc
+Reservation,0.5414,0.3746,,
+Raw ZOIB,0.5419,0.3765,0.5625,0.3911
+Support-aware ZOIB,0.5391,0.3774,0.5610,0.3918
+Gaussian,0.5454,0.3795,0.5631,0.3915

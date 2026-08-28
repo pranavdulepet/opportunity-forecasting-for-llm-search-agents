@@ -1,0 +1,585 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Opportunity Forecasting for LLM Search Agents",
+    "repository": "https://github.com/pranavdulepet/opportunity-forecasting-for-llm-search-agents",
+    "scope": "Full-horizon remaining-upside forecasting with a fixed search model"
+  },
+  "canonical_data_archive": {
+    "url": "https://github.com/pranavdulepet/opportunity-forecasting-for-llm-search-agents/releases/download/paper-data/paper-data.zip",
+    "sha256": "21031af1676a8a796b50e0785b6b3957a66c91ba83efe9be790f582879d4ab43",
+    "bytes": 318657810,
+    "paths": [
+      "data/paper_search/checkpoints/dev.jsonl",
+      "data/paper_search/checkpoints/test.jsonl",
+      "data/paper_search/checkpoints/train.jsonl",
+      "data/paper_search/export/corpus.jsonl",
+      "data/paper_search/export/qrels.tsv",
+      "data/paper_search/export/queries.jsonl",
+      "data/paper_search/labels/dev.jsonl",
+      "data/paper_search/labels/test.jsonl",
+      "data/paper_search/labels/train.jsonl",
+      "data/webshop/checkpoints/dev.jsonl",
+      "data/webshop/checkpoints/test.jsonl",
+      "data/webshop/checkpoints/train.jsonl",
+      "data/webshop/labels/dev.jsonl",
+      "data/webshop/labels/test.jsonl",
+      "data/webshop/labels/train.jsonl"
+    ]
+  },
+  "third_party": {
+    "webshop": {
+      "url": "https://github.com/princeton-nlp/WebShop.git",
+      "commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+      "root": "third_party/WebShop",
+      "data_source": {
+        "repo_id": "quanwei0/webshop-minimal",
+        "repo_type": "dataset",
+        "revision": "03c6b3df1e13c07c5d3ecb58eb867298e2a2cc80"
+      },
+      "data_assets": {
+        "items_shuffle": {
+          "path": "third_party/WebShop/data/items_shuffle.json",
+          "filename": "items_shuffle.json",
+          "sha256": "2ef591d65df3af89e972ab72468eb82cbf124d876552d9f3678667edd620a6c8",
+          "bytes": 5479720229
+        },
+        "items_ins_v2": {
+          "path": "third_party/WebShop/data/items_ins_v2.json",
+          "filename": "items_ins_v2.json",
+          "sha256": "1d36af476bdb8f82a5da62bd8acdabe54cd8de2fa84010d37da5c4890feb447e",
+          "bytes": 186295270
+        },
+        "items_human_ins": {
+          "path": "third_party/WebShop/data/items_human_ins.json",
+          "source_path": "baseline_models/data/items_human_ins.json",
+          "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3",
+          "bytes": 5137548
+        }
+      },
+      "search_index": {
+        "path": "third_party/WebShop/search_engine/indexes",
+        "documents": 1181370
+      }
+    }
+  },
+  "rendering": {
+    "pipeline_font": {
+      "source": "CTAN Latin Modern 2.005",
+      "license": "GUST Font License 1.0",
+      "regular": {
+        "path": "opportunity_forecasting/figures/fonts/lmsans10-regular.otf",
+        "sha256": "d431b786b9b603662718e79cfe9b441f47a8b0b3e854dde89d5acb3ed7cfd682",
+        "bytes": 95128
+      },
+      "bold": {
+        "path": "opportunity_forecasting/figures/fonts/lmsans10-bold.otf",
+        "sha256": "a597b710326c1a8a2c7238d808e5d38711638a72a32383478db4829d63afd687",
+        "bytes": 107448
+      },
+      "license_file": {
+        "path": "opportunity_forecasting/figures/fonts/GUST-FONT-LICENSE.txt",
+        "sha256": "49ea6cb9257bbee0a3979c48a774cd221550ac1c20c95549efe45fc99cc18050",
+        "bytes": 1377
+      }
+    }
+  },
+  "protocol": {
+    "task": "Predict full-horizon residual remaining upside from a fixed search model",
+    "monte_carlo_continuations_per_state": 6,
+    "continuation_horizon_steps": 60,
+    "training_seed": 42,
+    "label_seed": 123,
+    "trajectory_seed": 123,
+    "trajectory_action_temperature": 0.0,
+    "trajectory_action_top_p": 1.0,
+    "continuation_temperature": 0.7,
+    "continuation_top_p": 0.9,
+    "train_epochs": 3,
+    "selection_split": "dev",
+    "report_split": "test",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "prompts": {
+      "search_policy": {
+        "file": "opportunity_forecasting/data/webshop_action_prompt.py",
+        "symbol": "WEBSHOP_ACTION_PROMPT",
+        "content_sha256": "8a7485ec2d4ab56d9858eb597dd35f2529b046961ebf92870d83635d00fab31e"
+      },
+      "prompted_forecaster": {
+        "file": "opportunity_forecasting/models/prompted_forecaster.py",
+        "symbol": "STOPPING_PROMPT",
+        "content_sha256": "d246b303e2585b011b2115f1efbd3ac07425bc8f4d72025d8376796d90c6e4cf"
+      }
+    },
+    "backbone": {
+      "path": "runs/models/Qwen2.5-7B-Instruct",
+      "model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "official_files": {
+        "model-00001-of-00004.safetensors": {
+          "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+          "bytes": 3945441440
+        },
+        "model-00002-of-00004.safetensors": {
+          "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+          "bytes": 3864726352
+        },
+        "model-00003-of-00004.safetensors": {
+          "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+          "bytes": 3864726424
+        },
+        "model-00004-of-00004.safetensors": {
+          "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+          "bytes": 3556377672
+        },
+        "model.safetensors.index.json": {
+          "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+          "bytes": 27752
+        },
+        "config.json": {
+          "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+          "bytes": 663
+        },
+        "generation_config.json": {
+          "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+          "bytes": 243
+        },
+        "merges.txt": {
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+          "bytes": 1671839
+        },
+        "tokenizer.json": {
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+          "bytes": 7031645
+        },
+        "tokenizer_config.json": {
+          "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+          "bytes": 7305
+        },
+        "vocab.json": {
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+          "bytes": 2776833
+        }
+      }
+    },
+    "training_overrides": {
+      "paper_search.residual_gaussian.learning_rate": "1e-5",
+      "all_other_heads.learning_rate": "1e-4"
+    },
+    "trained_checkpoint_selection": "Epochs 1 through 3 only; epoch 0 is diagnostic and ineligible",
+    "stopping_policy_sweep": "One shared cost and risk grid for every method",
+    "evaluation_surface": "All methods use the same label-derived held-out reward stream"
+  },
+  "domains": {
+    "webshop": {
+      "reward_mode": "product_page_buy_now_current_options",
+      "splits": {
+        "seed": 123,
+        "builder": "opportunity_forecasting/data/splits.py",
+        "goal_ids": {
+          "train": {
+            "path": "data/webshop/splits/train_goal_ids.json",
+            "sha256": "e6dd5e7415729a4fe5cb6cc220fdc22233840dd62e4fd3122f47ea7918b80b8f",
+            "bytes": 27855,
+            "goals": 3449
+          },
+          "dev": {
+            "path": "data/webshop/splits/dev_goal_ids.json",
+            "sha256": "7eb2898648b066ba8e8b640948ab5b2c9c941c05d7053f887df1ebc5c076b86f",
+            "bytes": 2734,
+            "goals": 335
+          },
+          "test": {
+            "path": "data/webshop/splits/test_goal_ids.json",
+            "sha256": "eb4f3865f536e8de78ecfde938a46c62de9f218e6585db46293e2ac462d24bf4",
+            "bytes": 2998,
+            "goals": 371
+          }
+        },
+        "metadata": {
+          "path": "data/webshop/splits/split_metadata.json",
+          "sha256": "db4f4c25399e701f5c9f93051f744284d9cbb7c95c16319fa3aba15059a18053",
+          "bytes": 505
+        }
+      },
+      "trajectory_generation": {
+        "entrypoint": "opportunity_forecasting/data/trajectories.py",
+        "vllm": "0.8.5.post1",
+        "historical_model_revision_status": "The original log records revision=None; the release backbone revision is pinned for future reproduction.",
+        "prompt": "webshop_shopping_prompt",
+        "prompt_file": "opportunity_forecasting/data/webshop_action_prompt.py",
+        "prompt_symbol": "WEBSHOP_ACTION_PROMPT",
+        "prompt_content_sha256": "8a7485ec2d4ab56d9858eb597dd35f2529b046961ebf92870d83635d00fab31e",
+        "seen_reward": "buy_now_reward_on_opened_page_with_current_options",
+        "gpu_memory_utilization": 0.9,
+        "max_model_len": 4096,
+        "dtype": "half",
+        "enforce_eager": true,
+        "attention_backend": "XFORMERS",
+        "action_max_new_tokens": 200
+      },
+      "label_generation": {
+        "entrypoint": "opportunity_forecasting/data/label_webshop.py",
+        "vllm": "0.8.5.post1",
+        "prompt": "webshop_shopping_prompt",
+        "prompt_file": "opportunity_forecasting/data/webshop_action_prompt.py",
+        "prompt_symbol": "WEBSHOP_ACTION_PROMPT",
+        "prompt_content_sha256": "8a7485ec2d4ab56d9858eb597dd35f2529b046961ebf92870d83635d00fab31e",
+        "gpu_memory_utilization": 0.75,
+        "max_model_len": 8192,
+        "dtype": "half",
+        "enforce_eager": true,
+        "attention_backend": "XFORMERS",
+        "action_max_new_tokens": 200,
+        "batch_continuations": false
+      },
+      "labels": {
+        "train": {
+          "path": "data/webshop/labels/train.jsonl",
+          "sha256": "42679cb175f3c7ab3bdf7e5bf2238d3c41bedb6a0d216dae2ad210ca612028a4",
+          "bytes": 714347241,
+          "rows": 19967
+        },
+        "dev": {
+          "path": "data/webshop/labels/dev.jsonl",
+          "sha256": "c641b1c3a55256e1e8ad214f4ec17e478abeb726c45ca5cfe5cc29c69cf68fda",
+          "bytes": 70916506,
+          "rows": 1997
+        },
+        "test": {
+          "path": "data/webshop/labels/test.jsonl",
+          "sha256": "d0be196d94f7e94455f49fa49f70856c1b6772efe9315cf3224024ebaa0659b0",
+          "bytes": 71423244,
+          "rows": 2007
+        }
+      },
+      "checkpoints": {
+        "train": {
+          "path": "data/webshop/checkpoints/train.jsonl",
+          "sha256": "17a42cebd113f0657355db6ba203a4697f7f3064791673802ebbe3cb209f452c",
+          "bytes": 41071470,
+          "rows": 20002
+        },
+        "dev": {
+          "path": "data/webshop/checkpoints/dev.jsonl",
+          "sha256": "77dc8d992862af34e69511d1a9d129029c1e2b725d35b5c52725a9e79a6f6649",
+          "bytes": 4184409,
+          "rows": 2001
+        },
+        "test": {
+          "path": "data/webshop/checkpoints/test.jsonl",
+          "sha256": "25cb57eb2e2a9a0ded2ba3b12dd892ee55cf36ec075cc6cf2395bab7929a2f47",
+          "bytes": 4154076,
+          "rows": 2007
+        }
+      },
+      "environment_asset": {
+        "path": "third_party/WebShop/data/items_shuffle.json",
+        "sha256": "2ef591d65df3af89e972ab72468eb82cbf124d876552d9f3678667edd620a6c8",
+        "bytes": 5479720229
+      },
+      "evaluation": {
+        "source_tasks": 4155,
+        "test_labels": 2007,
+        "aligned_test_goals": 371,
+        "schedulable_allocation_streams": 365,
+        "prompt_test_predictions": 2007
+      }
+    },
+    "paper_search": {
+      "reward_mode": "paper_page_litsearch_webshop_relevance_v4",
+      "export_generation": {
+        "builder": "opportunity_forecasting/data/paper_search_export.py",
+        "beir_datasets": [
+          "scifact",
+          "scidocs",
+          "nfcorpus",
+          "trec-covid"
+        ],
+        "max_beir_queries_per_dataset": 1000,
+        "source_revision_status": "reconstructed from the only cached snapshots predating the export; not recorded by the original job",
+        "source_revisions": {
+          "path": "data/paper_search/export/source_revisions.json",
+          "sha256": "6d3df8c2d3f0c260066756cfa64777938847a3a87a354a44c76681e32ca158b8",
+          "bytes": 847
+        }
+      },
+      "splits": {
+        "seed": 123,
+        "builder": "opportunity_forecasting/data/splits.py",
+        "goal_ids": {
+          "train": {
+            "path": "data/paper_search/splits/train_goal_ids.json",
+            "sha256": "fc4653dd3ec556c232d93c1710d2bb5f5b989529000f5f4987fec7709d7a761c",
+            "bytes": 22478,
+            "goals": 2918
+          },
+          "dev": {
+            "path": "data/paper_search/splits/dev_goal_ids.json",
+            "sha256": "c6a9397551c87db283785b1df5dcc0454bd859715f9d71cfb21d74165680d1f8",
+            "bytes": 2790,
+            "goals": 365
+          },
+          "test": {
+            "path": "data/paper_search/splits/test_goal_ids.json",
+            "sha256": "72840dab509565d4b034a93b7b8a8b2a5b0b0aeec079f74ef888686585886041",
+            "bytes": 2807,
+            "goals": 364
+          }
+        },
+        "metadata": {
+          "path": "data/paper_search/splits/split_metadata.json",
+          "sha256": "d74258e5046a736deabe2561e21b539fe27d783a560baf847d7652082db1888d",
+          "bytes": 402
+        }
+      },
+      "trajectory_generation": {
+        "entrypoint": "opportunity_forecasting/data/trajectories.py",
+        "vllm": "0.7.3",
+        "prompt": "paper_search_prompt",
+        "seen_reward": "paper_relevance_reward",
+        "gpu_memory_utilization": 0.88,
+        "max_model_len": 4096,
+        "dtype": "half",
+        "enforce_eager": true,
+        "attention_backend": "XFORMERS",
+        "action_max_new_tokens": 200
+      },
+      "label_generation": {
+        "entrypoint": "opportunity_forecasting/data/label_paper_search.py",
+        "vllm": "0.7.3",
+        "gpu_memory_utilization": 0.88,
+        "max_model_len": 4096,
+        "dtype": "half",
+        "enforce_eager": true,
+        "attention_backend": "XFORMERS",
+        "action_max_new_tokens": 200,
+        "batch_continuations": true
+      },
+      "labels": {
+        "train": {
+          "path": "data/paper_search/labels/train.jsonl",
+          "sha256": "1901286a65f769177028866f1506793343debc981caeff9375f5922789e9b333",
+          "bytes": 343342006,
+          "rows": 19967
+        },
+        "dev": {
+          "path": "data/paper_search/labels/dev.jsonl",
+          "sha256": "af21de982b73c65a58696ed58b5eae1b74ae38722718b60f5c9247887f586ae7",
+          "bytes": 37407365,
+          "rows": 1997
+        },
+        "test": {
+          "path": "data/paper_search/labels/test.jsonl",
+          "sha256": "d6d4e7a4392b0bd1c20fbe4b669f9bdf7ae4e4949e681d9f3c79a6e9ca3543c7",
+          "bytes": 35299607,
+          "rows": 2007
+        }
+      },
+      "checkpoints": {
+        "train": {
+          "path": "data/paper_search/checkpoints/train.jsonl",
+          "sha256": "2379a2e44092a513b05815d99ff88d0f3668147450d3772970ddbcfbab744668",
+          "bytes": 71070036,
+          "rows": 19967
+        },
+        "dev": {
+          "path": "data/paper_search/checkpoints/dev.jsonl",
+          "sha256": "a2ffdc06866fcdf496be042d9437c4a476d24a669a15cf4b94c0be7623ac05a6",
+          "bytes": 7306205,
+          "rows": 1997
+        },
+        "test": {
+          "path": "data/paper_search/checkpoints/test.jsonl",
+          "sha256": "1ab1488cc7037955041a3897f1eedd3f16d4508c4ae8ec5093e76c43f978f965",
+          "bytes": 7236416,
+          "rows": 2007
+        }
+      },
+      "environment_assets": {
+        "queries": {
+          "path": "data/paper_search/export/queries.jsonl",
+          "sha256": "512ea2fa6a2ae1b30a46c93271d25a02605305df3e147fedfb7b4151fafeb3f6",
+          "bytes": 3133896,
+          "rows": 3647
+        },
+        "corpus": {
+          "path": "data/paper_search/export/corpus.jsonl",
+          "sha256": "df714d93116630d8f922d4a7154fbfcaf62a353b47372e552d8c482fd85fadcf",
+          "bytes": 365217174,
+          "rows": 269988
+        },
+        "qrels": {
+          "path": "data/paper_search/export/qrels.tsv",
+          "sha256": "2736ca5e4573fd8ec25a566d55843f56a9212ae3adcb4cd416304a5e59b33e56",
+          "bytes": 4220253,
+          "rows": 81723
+        },
+        "metadata": {
+          "path": "data/paper_search/export/metadata.json",
+          "sha256": "e59aa8eae1e8f09da48782f5ea2a8cee744f69c7320a313f42b280181c328ad9",
+          "bytes": 1197
+        }
+      },
+      "evaluation": {
+        "source_tasks": 3647,
+        "test_labels": 2007,
+        "aligned_test_goals": 364,
+        "schedulable_allocation_streams": 360,
+        "prompt_test_predictions": 2007
+      }
+    }
+  },
+  "models": {
+    "methods": {
+      "zoib_raw": {
+        "display": "ZOIB Regression",
+        "trainer": "opportunity_forecasting/models/train_zoib.py",
+        "target": "Six full-horizon continuation deltas",
+        "distribution": "Point mass at zero, point mass at one, and a Beta interior",
+        "support": "[0,1]",
+        "learning_rate": "1e-4"
+      },
+      "zoib_remaining": {
+        "display": "Support ZOIB",
+        "trainer": "opportunity_forecasting/models/train_zoib.py",
+        "target": "Six full-horizon continuation deltas divided by 1-current_best",
+        "distribution": "ZOIB over Z with Delta=(1-current_best)Z",
+        "support": "[0,1-current_best]",
+        "learning_rate": "1e-4"
+      },
+      "residual_scalar": {
+        "display": "Scalar Head",
+        "trainer": "opportunity_forecasting/models/train_regression.py",
+        "target": "Mean of six full-horizon continuation deltas",
+        "distribution": "Sigmoid-bounded scalar",
+        "support": "[0,1]",
+        "learning_rate": "1e-4"
+      },
+      "residual_gaussian": {
+        "display": "Gaussian Head",
+        "trainer": "opportunity_forecasting/models/train_regression.py",
+        "target": "Mean and population standard deviation of six full-horizon continuation deltas",
+        "distribution": "Gaussian with sigmoid-bounded mean and standard deviation",
+        "support": "Unbounded likelihood; reported mean is in [0,1]",
+        "learning_rate": {
+          "webshop": "1e-4",
+          "paper_search": "1e-5"
+        }
+      }
+    }
+  },
+  "paper_results": {
+    "webshop_budget": {
+      "path": "results/budgeted_expansion/webshop.csv",
+      "sha256": "4b0639d980ec1f919e42599764d777bb7245b77e85a66c236bd1e3c37f5fa477",
+      "bytes": 12584
+    },
+    "paper_search_budget": {
+      "path": "results/budgeted_expansion/paper_search.csv",
+      "sha256": "110cabb3b44e70a2d2790d377c57a54d4524f81a52748d99718e61c4648d16b3",
+      "bytes": 36676
+    },
+    "webshop_absolute": {
+      "path": "results/absolute_reward/webshop.csv",
+      "sha256": "15ff63a27adad55babaf3d6ec389924defae195e6d5dcfd2be98d7e035884744",
+      "bytes": 1287659
+    },
+    "paper_search_absolute": {
+      "path": "results/absolute_reward/paper_search.csv",
+      "sha256": "e79e6b07b33514b23ba24f4a7c9d5ebd6e71a8e5bfdaa08552c7a25017b13798",
+      "bytes": 2771486
+    },
+    "webshop_stopping": {
+      "path": "results/stopping/webshop.csv",
+      "sha256": "7c431e6d6f46c48b9844868a409296a6af402d32370488b077a04e0cf6bc6d15",
+      "bytes": 23631
+    },
+    "paper_search_stopping": {
+      "path": "results/stopping/paper_search.csv",
+      "sha256": "faac6853f21055dc1df5e96f663d1a7aee878b1c10321be4141dc0f851dd34fe",
+      "bytes": 20537
+    }
+  },
+  "diagnostic_results": {
+    "webshop_cost_normalized_allocation": {
+      "path": "results/cost_normalized_allocation/webshop.csv",
+      "sha256": "a5ca86a1a1aa96644f8b9975fadf8528f925f14322679c4da7c46f1903b8ef46",
+      "bytes": 1077165
+    },
+    "paper_search_cost_normalized_allocation": {
+      "path": "results/cost_normalized_allocation/paper_search.csv",
+      "sha256": "a9dd0bac7463d0f9b38127cb214bf2039f6a94f955e828b63c88c499d51ab235",
+      "bytes": 2036716
+    }
+  },
+  "paper_tables": {
+    "domain_summary": {
+      "path": "results/tables/domain_summary.csv",
+      "sha256": "2e7b4a794f101d7e8c4f2fd9fca84bca57aa262b543c99d6c35eba7f2671856a",
+      "bytes": 155
+    },
+    "evaluation_accounting": {
+      "path": "results/tables/evaluation_accounting.csv",
+      "sha256": "0a74fb7944f3e765fad21e40a7b2009776b1be3a19febec46361d48e0e500121",
+      "bytes": 149
+    },
+    "head_auc": {
+      "path": "results/tables/head_auc.csv",
+      "sha256": "66c1a9ed70adaee5f7f760f0b37aa1ca48e3bf582750cdcb4d267fe33a232ed0",
+      "bytes": 255
+    },
+    "head_forecast": {
+      "path": "results/tables/head_forecast.csv",
+      "sha256": "5fed1c59c572e635c84f7770e930651566dcc20cded4437ae03ef87dea95c8f4",
+      "bytes": 367
+    },
+    "paper_search_qrel_side_metrics": {
+      "path": "results/tables/paper_search_qrel_side_metrics.csv",
+      "sha256": "83bcccef506734f6d8a1f5161844b41f6b46393dfaab2ef5ad22ad96c341a8ef",
+      "bytes": 252
+    },
+    "parse_validity_summary": {
+      "path": "results/tables/parse_validity_summary.csv",
+      "sha256": "b84a1bf04cf85f2e65456fe5ce9667953b551c795090f9c94e48a23d2e39a96c",
+      "bytes": 140
+    },
+    "position_controls": {
+      "path": "results/tables/position_controls.csv",
+      "sha256": "9dcd41040fec336ccf4bc68dc96e769abd1a3b71c3964f37bf9e1e50dfac905b",
+      "bytes": 418
+    },
+    "experiment_settings": {
+      "path": "results/tables/experiment_settings.csv",
+      "sha256": "fd17cc4edccb2e323715d53d85096e56629c522ff452e2727787671e9676c7cd",
+      "bytes": 1020
+    },
+    "simple_controls": {
+      "path": "results/tables/simple_controls.csv",
+      "sha256": "dd64fd84ab85c20927b12342cfd60fa6a6e62cd7ad68f75d41af2e420e221594",
+      "bytes": 286
+    }
+  },
+  "figures": {
+    "materialize": "opportunity_forecasting/figures/materialize.py",
+    "overview": "opportunity_forecasting/figures/overview.py",
+    "budget": "opportunity_forecasting/figures/allocation.py",
+    "absolute": "opportunity_forecasting/figures/allocation.py",
+    "stopping": "opportunity_forecasting/figures/stopping.py",
+    "search_value": "opportunity_forecasting/figures/search_value.py"
+  },
+  "figure_sources": {
+    "search_value_summary": {
+      "path": "results/search_value/summary.csv",
+      "sha256": "b2fa9e70cce30388213fa7f0199b217ab616237899199a752318b8a97046d31c",
+      "bytes": 3367
+    },
+    "search_value_metadata": {
+      "path": "results/search_value/meta.json",
+      "sha256": "e55f83fc9ef31371ea6ff2725d78b4b49db11d787feb8fe3ede700e98f17629c",
+      "bytes": 494
+    }
+  }
+}

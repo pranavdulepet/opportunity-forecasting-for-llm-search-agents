@@ -1,0 +1,10 @@
+name: opportunity-forecasting-webshop
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.14
+  - pip=26.2
+  - git=2.55.0
+  - openjdk=11.0.30
+  - pip:
+      - -r ../requirements/webshop-data-lock.txt

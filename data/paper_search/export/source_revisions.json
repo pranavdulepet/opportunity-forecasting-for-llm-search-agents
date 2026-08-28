@@ -1,0 +1,15 @@
+{
+  "status": "reconstructed",
+  "note": "These were the only cached source snapshots predating the canonical export, but the original export job did not record revisions or the datasets package version.",
+  "revisions": {
+    "princeton-nlp/LitSearch": "9573fb284a1026c998df47024b888a163f0f0e25",
+    "BeIR/scifact": "b3b5335604bf5ee3c4447671af975ea25143d4f5",
+    "BeIR/scifact-qrels": "2938d17dc3b09882fdb8c12bbbe2e2dc0e75a029",
+    "BeIR/scidocs": "acebceec772628c6679d76d6cff30ad517d17f4e",
+    "BeIR/scidocs-qrels": "735ea1048e37b1ebce14c6dc3d33a5edaf66d3dc",
+    "BeIR/nfcorpus": "b5026a0e96e8a7ac4f95f482a596389289d46269",
+    "BeIR/nfcorpus-qrels": "a451b3b26d3ae1358f259c1a3a4dd61fcea35a65",
+    "BeIR/trec-covid": "7e16fde3016c639c7f856e803f4bab92645562c4",
+    "BeIR/trec-covid-qrels": "532ac68ee6756ac22c9346eebf65bd3c6a042e10"
+  }
+}
